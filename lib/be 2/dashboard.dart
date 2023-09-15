@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -45,7 +46,7 @@ class _DashboardState extends State<Dashboard> {
               selectedIndex: 0),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(60.0),
+              padding: const EdgeInsets.all(50.0),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -71,12 +72,15 @@ class _DashboardState extends State<Dashboard> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Flexible(
                           child: Card(
-                            child: Padding(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: const Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,14 +88,14 @@ class _DashboardState extends State<Dashboard> {
                                   Row(
                                     children: [
                                       Icon(
-                                        Icons.article,
+                                        Icons.money,
                                         size: 26,
                                       ),
                                       SizedBox(
                                         width: 10,
                                       ),
                                       Text(
-                                        "Article",
+                                        "Income",
                                         style: TextStyle(
                                           fontSize: 26,
                                           fontWeight: FontWeight.bold,
@@ -103,7 +107,7 @@ class _DashboardState extends State<Dashboard> {
                                     height: 20,
                                   ),
                                   Text(
-                                    "Article",
+                                    "\$ 10.000",
                                     style: TextStyle(
                                       fontSize: 46,
                                       fontWeight: FontWeight.bold,
@@ -114,9 +118,15 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           ),
                         ),
+                        const SizedBox(
+                          width: 20,
+                        ),
                         Flexible(
                           child: Card(
-                            child: Padding(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: const Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,14 +134,14 @@ class _DashboardState extends State<Dashboard> {
                                   Row(
                                     children: [
                                       Icon(
-                                        Icons.comment,
+                                        Icons.money_off,
                                         size: 26,
                                       ),
                                       SizedBox(
                                         width: 10,
                                       ),
                                       Text(
-                                        "comment",
+                                        "Pengeluaran",
                                         style: TextStyle(
                                           fontSize: 26,
                                           fontWeight: FontWeight.bold,
@@ -143,7 +153,7 @@ class _DashboardState extends State<Dashboard> {
                                     height: 20,
                                   ),
                                   Text(
-                                    "+32 comment",
+                                    "\$ 1.000",
                                     style: TextStyle(
                                       color: Colors.red,
                                       fontSize: 46,
@@ -155,8 +165,351 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           ),
                         ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Flexible(
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.money,
+                                        size: 26,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Modal",
+                                        style: TextStyle(
+                                          fontSize: 26,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "\$ 4.000",
+                                    style: TextStyle(
+                                      color: Colors.yellow,
+                                      fontSize: 46,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Flexible(
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.attach_money,
+                                        size: 26,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Hasil",
+                                        style: TextStyle(
+                                          fontSize: 26,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "\$ 5.000",
+                                    style: TextStyle(
+                                      color: Colors.green,
+                                      fontSize: 46,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Flexible(
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.money,
+                                        size: 26,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Income",
+                                        style: TextStyle(
+                                          fontSize: 26,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "\$ 10.000",
+                                    style: TextStyle(
+                                      fontSize: 46,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Flexible(
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.money_off,
+                                        size: 26,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Pengeluaran",
+                                        style: TextStyle(
+                                          fontSize: 26,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "\$ 1.000",
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 46,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Flexible(
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.money,
+                                        size: 26,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Modal",
+                                        style: TextStyle(
+                                          fontSize: 26,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "\$ 4.000",
+                                    style: TextStyle(
+                                      color: Colors.yellow,
+                                      fontSize: 46,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Flexible(
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.attach_money,
+                                        size: 26,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Hasil",
+                                        style: TextStyle(
+                                          fontSize: 26,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "\$ 5.000",
+                                    style: TextStyle(
+                                      color: Colors.green,
+                                      fontSize: 46,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: Container(
+                            height: 300,
+                            width: 670,
+                            child: LineChart(
+                              LineChartData(
+                                // Konfigurasi grafik Anda di sini
+                                gridData: FlGridData(show: false),
+                                titlesData: FlTitlesData(show: false),
+                                borderData: FlBorderData(
+                                  show: true,
+                                  border: Border.all(
+                                      color: const Color(0xff37434d), width: 1),
+                                ),
+                                minX: 0,
+                                maxX: 7,
+                                minY: 0,
+                                maxY: 6,
+                                lineBarsData: [
+                                  LineChartBarData(
+                                    spots: [
+                                      FlSpot(0, 3),
+                                      FlSpot(1, 1),
+                                      FlSpot(2, 4),
+                                      FlSpot(3, 1),
+                                      FlSpot(4, 3),
+                                      FlSpot(5, 5),
+                                      FlSpot(6, 3),
+                                      FlSpot(7, 4),
+                                    ],
+                                    isCurved: true,
+                                    color: Colors.blue.shade100,
+                                    dotData: FlDotData(show: false),
+                                    belowBarData: BarAreaData(show: true),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Flexible(
+                          child: Container(
+                            height: 300,
+                            width: 670,
+                            decoration: BoxDecoration(
+                                color: Colors.amber.shade100,
+                                borderRadius: BorderRadius.circular(20.0)),
+                          ),
+                        )
+                      ],
+                    )
                   ],
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:adaptive_navigation/adaptive_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'ManajemenPesananPage.dart';
 
 void main() {
   runApp(BackendDashboardApp());
@@ -24,13 +25,20 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
 
-  final List<AdaptiveScaffoldDestination> _menuItems = [
-    const AdaptiveScaffoldDestination(
-        title: 'Manajemen Produk', icon: Icons.shop),
-    const AdaptiveScaffoldDestination(
-        title: 'Manajemen Pesanan', icon: Icons.shopping_cart),
-    const AdaptiveScaffoldDestination(
-        title: 'Manajemen Pelanggan', icon: Icons.person),
+  // Daftar menu pada Adaptive Navigation
+  static const List<AdaptiveScaffoldDestination> _menuItems = [
+    AdaptiveScaffoldDestination(
+      title: 'Manajemen Produk',
+      icon: Icons.shop,
+    ),
+    AdaptiveScaffoldDestination(
+      title: 'Manajemen Pesanan',
+      icon: Icons.shopping_cart,
+    ),
+    AdaptiveScaffoldDestination(
+      title: 'Manajemen Pelanggan',
+      icon: Icons.person,
+    ),
   ];
 
   @override
@@ -38,6 +46,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return AdaptiveNavigationScaffold(
       selectedIndex: _selectedIndex,
       destinations: _menuItems,
+      onDestinationSelected: (int index) {
+        // Handle navigation to specific pages based on index
+        if (index == 0) {
+        } else if (index == 1) {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => ManajemenPesananPage(),
+          ));
+        }
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
       appBar: AppBar(
         title: const Text('Dashboard - Coffee Shop Backend'),
       ),
@@ -47,24 +67,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildBody() {
     final List<String> _bulan = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'Mei',
-      'Jun',
-      'Jul',
-      'Agu',
-      'Sep',
-      'Okt',
-      'Nov',
-      'Des',
+      'Senin',
+      'Selasa',
+      'Rabu',
+      'Kamis',
+      'Jumat',
+      'Sabtu',
+      'Minggu',
     ];
 
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          // Judul Statistik Penjualan
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
@@ -72,38 +88,206 @@ class _DashboardScreenState extends State<DashboardScreen> {
               style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.all(16.0),
-            height: 400.0,
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(0, 80, 229, 255),
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-            child: LineChartSample2(bulan: _bulan),
+
+          // Grafik Penjualan
+          Row(
+            children: [
+              Container(
+                margin: const EdgeInsets.all(16.0),
+                height: 500.0,
+                child: LineChartSample2(bulan: _bulan),
+              ),
+            ],
           ),
-          const ListTile(
-            title: Text('Menu Hari Ini'),
-          ),
-          const ListTile(
-            title: Text('Kopi Espresso'),
-            subtitle: Text('Harga: \$3.99'),
-          ),
-          const ListTile(
-            title: Text('Latte'),
-            subtitle: Text('Harga: \$4.99'),
-          ),
-          const ListTile(
-            title: Text('Cappuccino'),
-            subtitle: Text('Harga: \$4.49'),
-          ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(16.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                CoffeeShopMetric(title: 'Pendapatan', value: '\$1000'),
-                CoffeeShopMetric(title: 'Pelanggan', value: '200'),
-                CoffeeShopMetric(title: 'Pesanan', value: '300'),
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Flexible(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.money,
+                                size: 26,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Income",
+                                style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "\$ 10.000",
+                            style: TextStyle(
+                              fontSize: 46,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Flexible(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.money_off,
+                                size: 26,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Pengeluaran",
+                                style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "\$ 1.000",
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 46,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Flexible(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.money,
+                                size: 26,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Modal",
+                                style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "\$ 4.000",
+                            style: TextStyle(
+                              color: Colors.yellow,
+                              fontSize: 46,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Flexible(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.attach_money,
+                                size: 26,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Hasil",
+                                style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "\$ 5.000",
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 46,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -146,23 +330,21 @@ class LineChartSample2 extends StatefulWidget {
 }
 
 class _LineChartSample2State extends State<LineChartSample2> {
-  List<Color> gradientColors = [
+  // Warna untuk grafik
+  static const List<Color> gradientColors = [
     AppColors.contentColorCyan,
     AppColors.contentColorBlue,
   ];
-  List<double> _dataPenjualan = [
-    3.0,
+
+  // Data penjualan
+  late final List<double> _dataPenjualan = [
+    1.0,
+    1.5,
+    2.0,
+    1.8,
+    2.2,
+    2.9,
     3.5,
-    4.0,
-    3.8,
-    4.2,
-    3.9,
-    4.5,
-    4.3,
-    3.7,
-    4.1,
-    4.0,
-    3.8
   ];
 
   bool showAvg = false;
@@ -172,11 +354,11 @@ class _LineChartSample2State extends State<LineChartSample2> {
     return Stack(
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 1,
+          aspectRatio: 1.5,
           child: Padding(
             padding: const EdgeInsets.only(
-              right: 18,
-              left: 12,
+              right: 30,
+              left: 30,
               top: 24,
               bottom: 12,
             ),
@@ -185,6 +367,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
             ),
           ),
         ),
+
+        // Tombol untuk mengganti tampilan rata-rata
         SizedBox(
           width: 60,
           height: 34,
@@ -214,33 +398,21 @@ class _LineChartSample2State extends State<LineChartSample2> {
       ),
       titlesData: FlTitlesData(
         leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        // SideTitles(
-        //   showTitles: false,
-        // ),
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: false,
-          ),
-        ),
-
-        topTitles: const AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: false,
-          ),
-        ),
-
+        rightTitles:
+            const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
+            reservedSize: 30,
             getTitlesWidget: (value, TitleMeta) {
-              // Tampilkan label bulan sesuai dengan indeks
               if (value >= 0 && value < widget.bulan.length) {
                 return Text(
                   widget.bulan[value.toInt()],
-                  style: const TextStyle(fontSize: 12.0),
+                  style: const TextStyle(fontSize: 10.0),
                 );
               }
-              return const Text('');
+              return Text('aksjdie');
             },
           ),
         ),
@@ -249,13 +421,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
         show: true,
         border: Border.all(
           color: const Color(0xff37434d),
-          width: 1,
+          width: 2,
         ),
       ),
       minX: 0,
-      maxX: widget.bulan.length.toDouble() - 4,
+      maxX: widget.bulan.length.toDouble() - 1,
       minY: 0,
-      maxY: 10,
+      maxY: 5,
       lineBarsData: [
         LineChartBarData(
           spots: [
@@ -263,7 +435,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
               FlSpot(i.toDouble(), _dataPenjualan[i]),
           ],
           isCurved: true,
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             colors: gradientColors,
             stops: [0.0, 1.0],
             begin: Alignment.bottomCenter,
@@ -328,11 +500,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
             gradient: LinearGradient(
               colors: [
                 ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
+                    .lerp(0.2)!,
                 ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
+                    .lerp(0.2)!,
               ],
               stops: [0.0, 1.0],
               begin: Alignment.bottomCenter,
