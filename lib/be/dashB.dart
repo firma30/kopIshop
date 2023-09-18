@@ -357,8 +357,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
           aspectRatio: 1.5,
           child: Padding(
             padding: const EdgeInsets.only(
-              right: 30,
-              left: 30,
+              right: 20,
+              left: 25,
               top: 24,
               bottom: 12,
             ),
@@ -371,7 +371,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
         // Tombol untuk mengganti tampilan rata-rata
         SizedBox(
           width: 60,
-          height: 34,
           child: TextButton(
             onPressed: () {
               setState(() {
@@ -418,7 +417,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         ),
       ),
       borderData: FlBorderData(
-        show: true,
+        show: false,
         border: Border.all(
           color: const Color(0xff37434d),
           width: 2,
@@ -441,7 +440,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
           ),
-          barWidth: 5,
+          barWidth: 2,
           isStrokeCapRound: true,
           belowBarData: BarAreaData(
             show: true,
