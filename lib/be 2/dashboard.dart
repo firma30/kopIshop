@@ -9,6 +9,13 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  int _selectedIndex = 0;
+  final List<Widget> _pages = [
+    HomePage(),
+    ChartsPage(),
+    ProfilePage(),
+    SettingsPage(),
+  ];
   bool isExpand = true;
   @override
   Widget build(BuildContext context) {
@@ -42,7 +49,16 @@ class _DashboardState extends State<Dashboard> {
                 label: Text("Home"),
               ),
             ],
-            selectedIndex: 0,
+            selectedIndex: _selectedIndex,
+            onDestinationSelected: (int index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => _pages[index],
+              ));
+            },
           ),
           Expanded(
             child: Padding(
@@ -76,15 +92,16 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ],
                   ),
-                  SingleChildScrollView(
-                    scrollDirection:
-                        Axis.horizontal, // Menambahkan horizontal scrolling
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Flexible(
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
                           child: const Padding(
                             padding: EdgeInsets.all(20.0),
@@ -92,10 +109,12 @@ class _DashboardState extends State<Dashboard> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
                                     Icon(
                                       Icons.bar_chart_outlined,
-                                      size: 30,
+                                      size: 60,
                                     ),
                                     Column(
                                       crossAxisAlignment:
@@ -107,7 +126,7 @@ class _DashboardState extends State<Dashboard> {
                                         Text(
                                           "Income",
                                           style: TextStyle(
-                                            fontSize: 16,
+                                            fontSize: 26,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -117,7 +136,7 @@ class _DashboardState extends State<Dashboard> {
                                         Text(
                                           "\$ 10.000",
                                           style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 36,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -132,34 +151,165 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      // ...Widget-widget Card di sini
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(
+                                      Icons.bar_chart_outlined,
+                                      size: 60,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                          "Income",
+                                          style: TextStyle(
+                                            fontSize: 26,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "\$ 10.000",
+                                          style: TextStyle(
+                                            fontSize: 36,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(
+                                      Icons.bar_chart_outlined,
+                                      size: 60,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                          "Income",
+                                          style: TextStyle(
+                                            fontSize: 26,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "\$ 10.000",
+                                          style: TextStyle(
+                                            fontSize: 36,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Container(
-                    height: 300,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.amberAccent,
-                    ),
-                  )
                 ],
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Home Page'),
+    );
+  }
+}
+
+class ChartsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Charts Page'),
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Profile Page'),
+    );
+  }
+}
+
+class SettingsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Settings Page'),
     );
   }
 }
